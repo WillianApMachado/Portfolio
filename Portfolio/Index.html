@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Willian A. Machado</title>
+    
+    <!-- SEO & Social Sharing Tags -->
+    <meta name="description" content="Portfolio of Willian A. Machado - Computer Science Student & Software Developer specializing in Python, AI, and Backend Development.">
+    <meta property="og:title" content="Willian A. Machado | Software Developer">
+    <meta property="og:description" content="Computer Science Student specializing in Python, AI, and Backend. View my projects and technical arsenal.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://willianamachado.github.io">
+    <meta property="og:image" content="https://placehold.co/1200x630/050505/FFF?text=WILLIAN+MACHADO+DEV">
+    
+    <!-- FAVICON LINK (Embedded directly so no external file is needed) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Crect width='64' height='64' rx='12' fill='%23050505'/%3E%3Cpath d='M12 16L20 48L32 28L44 48L52 16' stroke='white' stroke-width='3' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Ccircle cx='12' cy='16' r='2' fill='white'/%3E%3Ccircle cx='52' cy='16' r='2' fill='white'/%3E%3Ccircle cx='32' cy='28' r='2' fill='white'/%3E%3Crect x='19' y='46' width='2' height='4' fill='white'/%3E%3Crect x='43' y='46' width='2' height='4' fill='white'/%3E%3Cpath d='M4 32H10' stroke='%23A1A1A1' stroke-width='1'/%3E%3Cpath d='M54 32H60' stroke='%23A1A1A1' stroke-width='1'/%3E%3C/svg%3E">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'void': '#050505',
+                        'faint': '#1A1A1A',
+                        'ash': '#A1A1A1',
+                        'pure': '#FFFFFF',
+                    },
+                    fontFamily: {
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+            background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+        }
+
+        .bg-sigil {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(45deg, transparent 48%, #333 49%, #333 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, #333 49%, #333 51%, transparent 52%);
+            background-size: 60px 60px;
+        }
+
+        .glitch-text {
+            position: relative;
+        }
+        .glitch-text:hover::before,
+        .glitch-text:hover::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #050505;
+        }
+        .glitch-text:hover::before {
+            left: 4px;
+            text-shadow: -2px 0 #fff;
+            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+        }
+        .glitch-text:hover::after {
+            left: -4px;
+            text-shadow: -2px 0 #999;
+            animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); }
+            100% { clip-path: inset(60% 0 10% 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 50% 0); }
+            100% { clip-path: inset(80% 0 5% 0); }
+        }
+
+        .btn-sigil {
+            position: relative;
+            background: transparent;
+            border: 1px solid #333;
+            color: #fff;
+            overflow: hidden;
+            transition: 0.3s;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+        .btn-sigil:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 15px rgba(255,255,255,0.3);
+        }
+
+        .btn-sigil-hollow {
+            position: relative;
+            background: transparent;
+            border: 1px solid #A1A1A1;
+            color: #A1A1A1;
+            overflow: hidden;
+            transition: 0.3s;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%, 0 70%);
+        }
+        .btn-sigil-hollow:hover {
+            border-color: #fff;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+        
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fff;
+        }
+
+        html.lenis {
+            height: auto;
+        }
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
+
+        .project-list:hover .project-item {
+            opacity: 0.3;
+            filter: blur(1px);
+        }
+        .project-list .project-item:hover {
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        .cyber-frame {
+            position: relative;
+            border: 1px solid #333;
+            background: #000;
+        }
+        .cyber-frame::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 10px; height: 10px;
+            border-top: 2px solid #fff;
+            border-left: 2px solid #fff;
+        }
+        .cyber-frame::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 10px; height: 10px;
+            border-bottom: 2px solid #fff;
+            border-right: 2px solid #fff;
+        }
+
+        #menu-overlay {
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        #menu-overlay.open {
+            transform: translateX(0%);
+        }
+        
+        .menu-link {
+            position: relative;
+            display: inline-block;
+        }
+        .menu-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #FFF;
+            transition: width 0.3s ease;
+        }
+        .menu-link:hover::after {
+            width: 100%;
+        }
+        
+        .burger-line {
+            transition: all 0.3s ease;
+        }
+        .menu-open .line-1 {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        .menu-open .line-2 {
+            opacity: 0;
+        }
+        .menu-open .line-3 {
+            transform: rotate(-45deg) translate(5px, -5px);
+            width: 2rem !important;
+        }
+
+        /* Boot Screen */
+        #boot-screen {
+            transition: opacity 0.5s ease-out;
+        }
+
+    </style>
+</head>
+<body class="font-mono text-sm sm:text-base selection:bg-white selection:text-black">
+
+    <div id="boot-screen" class="fixed inset-0 z-[100] bg-void flex items-center justify-center cursor-none">
+        <div class="font-mono text-xs md:text-sm text-ash w-80">
+            <div id="boot-log" class="mb-2 flex flex-col gap-1 min-h-[100px] justify-end"></div>
+            <div class="h-[2px] w-full bg-[#111] overflow-hidden">
+                <div id="boot-progress" class="h-full bg-white w-0 transition-all duration-300 ease-out"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-sigil"></div>
+
+    <button id="lang-toggle" class="fixed top-8 right-24 z-50 text-xl font-bold mix-blend-difference hover:scale-110 transition-transform cursor-pointer outline-none" title="Switch Language">
+        EN
+    </button>
+
+    <div id="menu-btn" class="fixed top-8 right-8 z-50 cursor-pointer mix-blend-difference" onclick="toggleMenu()">
+        <div class="flex flex-col gap-2 items-end group">
+            <span class="burger-line line-1 h-[2px] w-8 bg-white transition-all group-hover:w-10"></span>
+            <span class="burger-line line-2 h-[2px] w-6 bg-white transition-all group-hover:w-10"></span>
+            <span class="burger-line line-3 h-[2px] w-4 bg-white transition-all group-hover:w-10"></span>
+        </div>
+    </div>
+
+    <nav id="menu-overlay" class="fixed top-0 right-0 z-40 h-full w-80 bg-void/95 backdrop-blur-md transform translate-x-full border-l border-white/10 flex flex-col justify-center items-center shadow-2xl">
+        <div class="absolute top-6 left-6 w-12 h-12 border-t border-l border-white/20"></div>
+        <div class="absolute bottom-6 right-6 w-12 h-12 border-b border-r border-white/20"></div>
+
+        <ul class="text-center space-y-8 mb-16">
+            <li>
+                <a href="#hero" onclick="toggleMenu()" class="menu-link text-3xl font-bold text-white hover:text-ash transition-colors" data-i18n="menu.home">HOME</a>
+            </li>
+            <li>
+                <a href="#about" onclick="toggleMenu()" class="menu-link text-3xl font-bold text-white hover:text-ash transition-colors" data-i18n="menu.about">ABOUT</a>
+            </li>
+            <li>
+                <a href="#stack" onclick="toggleMenu()" class="menu-link text-3xl font-bold text-white hover:text-ash transition-colors" data-i18n="menu.stack">ARSENAL</a>
+            </li>
+            <li>
+                <a href="#projects" onclick="toggleMenu()" class="menu-link text-3xl font-bold text-white hover:text-ash transition-colors" data-i18n="menu.projects">PROJECTS</a>
+            </li>
+            <li class="pt-4">
+                <a href="./resume.pdf" target="_blank" class="px-6 py-2 border border-ash text-ash text-sm hover:bg-white hover:text-black transition-all" data-i18n="menu.cv">DOWNLOAD CV</a>
+            </li>
+        </ul>
+
+        <div class="border-t border-white/20 pt-8 flex flex-col items-center gap-6 w-48">
+            <h3 class="text-ash tracking-[0.3em] text-xs" data-i18n="menu.contact">ESTABLISH CONNECTION</h3>
+            <div class="flex gap-6 text-xl">
+                <a href="https://github.com/WillianApMachado" target="_blank" class="text-white hover:text-ash hover:scale-110 transition-all">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/willian-aparecido-machado-b59b89240/" target="_blank" class="text-white hover:text-ash hover:scale-110 transition-all">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="mailto:Willianapmg@gmail.com" class="text-white hover:text-ash hover:scale-110 transition-all">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+            <p class="text-ash/50 text-[10px]">Francisco Morato, SP</p>
+        </div>
+    </nav>
+
+    <main id="hero" class="max-w-7xl mx-auto px-6 md:px-12 border-l border-faint min-h-screen relative">
+        
+        <section class="min-h-screen flex flex-col justify-center relative py-20 reveal-on-scroll">
+            <div class="absolute top-0 left-0 text-faint text-6xl opacity-20 select-none">
+                <i class="fa-solid fa-code-branch"></i>
+            </div>
+
+            <div class="space-y-4 z-10">
+                <p class="text-ash tracking-widest uppercase text-xs mb-4" data-i18n="hero.system">/// System.Init_User(Willian)</p>
+                <h1 id="hero-title" class="text-5xl md:text-8xl font-bold uppercase tracking-tighter leading-none glitch-text" data-text="SOFTWARE DEVELOPER">
+                    SOFTWARE<br>
+                    <span class="text-stroke text-transparent bg-clip-text bg-white">DEVELOPER</span>
+                </h1>
+                
+                <p class="max-w-xl text-ash mt-8 leading-relaxed" data-i18n="hero.bio">
+                    Computer Science Student (UNIP). Transforming theoretical knowledge into practical results in Python, SQL, and Web Technologies.
+                </p>
+
+                <div class="pt-8 flex flex-col sm:flex-row gap-4">
+                    <button class="btn-sigil px-8 py-4 tracking-widest uppercase font-bold text-xs" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" data-i18n="hero.cta">
+                        View Projects
+                    </button>
+                    <a href="./resume.pdf" target="_blank" class="btn-sigil-hollow px-8 py-4 tracking-widest uppercase font-bold text-xs text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-download"></i> <span data-i18n="hero.cv">Download CV</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="absolute bottom-10 right-0 hidden md:block text-right space-y-6">
+                <div>
+                    <h3 class="text-4xl font-bold text-white">6+</h3>
+                    <p class="text-ash text-xs uppercase tracking-widest" data-i18n="hero.years">Years in Tech</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-bold text-white">5+</h3>
+                    <p class="text-ash text-xs uppercase tracking-widest" data-i18n="hero.repos">Major Projects</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-24 border-t border-faint relative reveal-on-scroll">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-6 uppercase border-l-2 border-white pl-4" data-i18n="about.title">
+                        Core Directive
+                    </h2>
+                </div>
+                <div class="space-y-6 text-ash leading-relaxed">
+                    <p data-i18n="about.p1">
+                        Professional in early career seeking an Internship or Junior Developer role (Fullstack, Backend, AI). I aim to apply skills in Python, SQL, and Web Tech to solve complex challenges.
+                    </p>
+                    <p data-i18n="about.p2">
+                        Currently studying <strong class="text-white">Computer Science at UNIP</strong>. I value agile methodologies (Scrum) and clean code. Recognized for quick learning and fluency in English.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="stack" class="py-24 border-t border-faint reveal-on-scroll">
+            <h2 class="text-ash text-xs uppercase tracking-widest mb-12" data-i18n="stack.title">/// Technical_Arsenal</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="space-y-8">
+                    <h3 class="text-xl font-bold text-white" data-i18n="stack.web">WEB & BACKEND</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-brands fa-python text-xl group-hover:animate-pulse"></i> 
+                            <span>Python (Django/Flask)</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-code text-xl group-hover:animate-pulse"></i> 
+                            <span>HTML5 & CSS3</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-brands fa-java text-xl group-hover:animate-pulse"></i> 
+                            <span>Java & Logic</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-8">
+                    <h3 class="text-xl font-bold text-white" data-i18n="stack.ai">DATA & AI</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-database text-xl group-hover:animate-pulse"></i> 
+                            <span>SQL (PostgreSQL)</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-brain text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.nlp">Deep Learning & NLP</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-sitemap text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.modeling">Data Modeling</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-8">
+                    <h3 class="text-xl font-bold text-white" data-i18n="stack.systems">TOOLS & METHODS</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-brands fa-git-alt text-xl group-hover:animate-pulse"></i> 
+                            <span>Git Version Control</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-people-group text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.agile">Scrum & Agile</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-brands fa-microsoft text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.office">Microsoft Office</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-8">
+                    <h3 class="text-xl font-bold text-white" data-i18n="stack.soft">SOFT SKILLS</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-comments text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.comm">Communication</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-handshake text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.conflict">Conflict Resolution</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-language text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.english">English (Fluent)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-8">
+                    <h3 class="text-xl font-bold text-white" data-i18n="stack.infra">INFRASTRUCTURE</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-network-wired text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.network">Network Architecture</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-microchip text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.hardware">PC Hardware</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-brands fa-linux text-xl group-hover:animate-pulse"></i> 
+                            <span>Linux Environment</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-8">
+                    <h3 class="text-xl font-bold text-white" data-i18n="stack.front">FRONTEND & JS</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-brands fa-js text-xl group-hover:animate-pulse"></i> 
+                            <span>JavaScript</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-brands fa-bootstrap text-xl group-hover:animate-pulse"></i> 
+                            <span>Bootstrap</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-mobile-screen text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.responsive">Responsive Design</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-8">
+                    <h3 class="text-xl font-bold text-white" data-i18n="stack.work">WORK ETHIC</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-clock text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.time">Time Management</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-rocket text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.proactive">Proactivity</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-book text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.auto">Autodidact</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-8">
+                    <h3 class="text-xl font-bold text-white" data-i18n="stack.core">CORE CONCEPTS</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-square-root-variable text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.numerical">Numerical Methods</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-layer-group text-xl group-hover:animate-pulse"></i> 
+                            <span data-i18n="stack.algo">Algorithms</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-ash hover:text-white transition-colors cursor-crosshair group">
+                            <i class="fa-solid fa-terminal text-xl group-hover:animate-pulse"></i> 
+                            <span>Clean Code</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="projects" class="py-24 border-t border-faint relative reveal-on-scroll">
+            <h2 class="text-ash text-xs uppercase tracking-widest mb-16" data-i18n="projects.title">/// Selected_Works</h2>
+
+            <div class="flex flex-col gap-12 relative max-w-4xl">
+                
+                <div class="flex flex-col project-list w-full">
+                    
+                    <div class="project-item group relative border-b border-faint py-10 transition-all duration-300 cursor-pointer" 
+                         onmouseenter="showFloatingPreview('img1', this)" onmouseleave="hideFloatingPreview()">
+                        <div class="flex flex-col items-start">
+                            <span class="text-ash text-xs mb-2">01. // PYTHON ALGO</span>
+                            <h3 class="text-3xl md:text-5xl font-bold text-white group-hover:translate-x-4 transition-transform duration-300" data-i18n="projects.p1">
+                                SORTING ALGORITHMS
+                            </h3>
+                            <div class="flex gap-2 mt-3 opacity-50 group-hover:opacity-100 transition-opacity">
+                                <span class="px-2 py-1 border border-ash/20 text-xs text-ash">Python</span>
+                                <span class="px-2 py-1 border border-ash/20 text-xs text-ash">Data Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item group relative border-b border-faint py-10 transition-all duration-300 cursor-pointer" 
+                         onmouseenter="showFloatingPreview('img2', this)" onmouseleave="hideFloatingPreview()">
+                        <div class="flex flex-col items-start">
+                            <span class="text-ash text-xs mb-2">02. // DATABASE APP</span>
+                            <h3 class="text-3xl md:text-5xl font-bold text-white group-hover:translate-x-4 transition-transform duration-300" data-i18n="projects.p2">
+                                WASTE MANAGEMENT
+                            </h3>
+                            <div class="flex gap-2 mt-3 opacity-50 group-hover:opacity-100 transition-opacity">
+                                <span class="px-2 py-1 border border-ash/20 text-xs text-ash">Java</span>
+                                <span class="px-2 py-1 border border-ash/20 text-xs text-ash">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item group relative border-b border-faint py-10 transition-all duration-300 cursor-pointer" 
+                         onmouseenter="showFloatingPreview('img3', this)" onmouseleave="hideFloatingPreview()">
+                        <div class="flex flex-col items-start">
+                            <span class="text-ash text-xs mb-2">03. // WEB & LOGIC</span>
+                            <h3 class="text-3xl md:text-5xl font-bold text-white group-hover:translate-x-4 transition-transform duration-300" data-i18n="projects.p3">
+                                CARBON CALCULATOR
+                            </h3>
+                            <div class="flex gap-2 mt-3 opacity-50 group-hover:opacity-100 transition-opacity">
+                                <span class="px-2 py-1 border border-ash/20 text-xs text-ash">Logic</span>
+                                <span class="px-2 py-1 border border-ash/20 text-xs text-ash">App</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item group relative border-b border-faint py-10 transition-all duration-300 cursor-pointer" 
+                         onmouseenter="showFloatingPreview('img4', this)" onmouseleave="hideFloatingPreview()">
+                        <div class="flex flex-col items-start">
+                            <span class="text-ash text-xs mb-2">04. // COMPUTER VISION</span>
+                            <h3 class="text-3xl md:text-5xl font-bold text-white group-hover:translate-x-4 transition-transform duration-300" data-i18n="projects.p4">
+                                FACIAL RECOGNITION
+                            </h3>
+                            <div class="flex gap-2 mt-3 opacity-50 group-hover:opacity-100 transition-opacity">
+                                <span class="px-2 py-1 border border-ash/20 text-xs text-ash">Python</span>
+                                <span class="px-2 py-1 border border-ash/20 text-xs text-ash">OpenCV</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-12 border-t border-faint flex justify-between items-end reveal-on-scroll">
+            <div class="text-ash text-xs">
+                &copy; 2026 Willian A. Machado<br>
+                <span data-i18n="footer.loc">Loc: Francisco Morato, SP</span>
+            </div>
+            <div class="flex gap-6 items-center">
+                 <a href="https://github.com/WillianApMachado" target="_blank" class="text-ash hover:text-white transition-colors text-xl">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/willian-aparecido-machado-b59b89240/" target="_blank" class="text-ash hover:text-white transition-colors text-xl">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="mailto:Willianapmg@gmail.com" class="text-xl font-bold text-white hover:underline decoration-1 underline-offset-4" data-i18n="footer.talk">Let's Talk.</a>
+            </div>
+        </footer>
+
+    </main>
+
+    <div id="popup-preview" 
+         class="fixed z-50 pointer-events-none opacity-0 hidden md:block w-96 h-64"
+         style="transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;">
+        <div class="cyber-frame w-full h-full flex items-center justify-center overflow-hidden">
+            <div id="popup-preview-img" class="absolute inset-0 bg-cover bg-center transition-all duration-500" 
+                 style="background-image: url('');">
+            </div>
+            <div class="z-10 bg-black/80 px-4 py-2 border border-white/20 backdrop-blur-sm">
+                <span id="popup-preview-text" class="text-xs tracking-widest text-white"></span>
+            </div>
+        </div>
+        <div class="flex justify-between mt-2 px-1">
+            <span class="h-[1px] w-12 bg-white/30"></span>
+            <span class="text-[10px] text-ash tracking-[0.2em]">SYS.VISUAL_COMPONENT</span>
+            <span class="h-[1px] w-12 bg-white/30"></span>
+        </div>
+    </div>
+
+    <script>
+        const bootScreen = document.getElementById('boot-screen');
+        const bootLog = document.getElementById('boot-log');
+        const bootProgress = document.getElementById('boot-progress');
+
+        const logs = [
+            "/// SYSTEM_BOOT_SEQ_INIT",
+            "/// LOAD_MODULE: CYBER_CORE",
+            "/// VERIFYING_INTEGRITY...",
+            "/// ACCESS_GRANTED"
+        ];
+
+        let step = 0;
+
+        function runBoot() {
+            if (step < logs.length) {
+                const p = document.createElement('p');
+                p.innerText = logs[step];
+                bootLog.appendChild(p);
+                
+                bootProgress.style.width = `${((step + 1) / logs.length) * 100}%`;
+                
+                step++;
+                setTimeout(runBoot, 300);
+            } else {
+                setTimeout(() => {
+                    bootScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        bootScreen.style.display = 'none';
+                    }, 500);
+                }, 500);
+            }
+        }
+
+        runBoot();
+
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+            direction: 'vertical', 
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu-overlay');
+            const btn = document.getElementById('menu-btn');
+            
+            menu.classList.toggle('open');
+            btn.classList.toggle('menu-open');
+            
+            if (menu.classList.contains('open')) {
+                menu.classList.remove('translate-x-full');
+            } else {
+                menu.classList.add('translate-x-full');
+            }
+        }
+
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('is-visible');
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach((section) => observer.observe(section));
+
+        const popupPreview = document.getElementById('popup-preview');
+        const popupPreviewImg = document.getElementById('popup-preview-img');
+        const popupPreviewText = document.getElementById('popup-preview-text');
+        
+        let hideTimeout;
+
+        const contentMap = {
+            'img1': { text: 'BURN DATA ANALYSIS', color: '#1a1a1a' },
+            'img2': { text: 'JAVA & SQL SYSTEM', color: '#2a2a2a' },
+            'img3': { text: 'CARBON EMISSION LOGIC', color: '#0a0a0a' },
+            'img4': { text: 'BIOMETRIC SCAN', color: '#111111' }
+        };
+
+        function showFloatingPreview(id, element) {
+            if (hideTimeout) {
+                clearTimeout(hideTimeout);
+                hideTimeout = null;
+            }
+
+            const data = contentMap[id];
+            if(data) {
+                popupPreviewText.innerText = data.text;
+                popupPreviewImg.style.backgroundImage = `url('https://placehold.co/600x400/111/FFF?text=${encodeURIComponent(data.text)}')`;
+
+                const rect = element.getBoundingClientRect();
+                const popupHeight = 256; 
+                const top = rect.top + (rect.height / 2) - (popupHeight / 2);
+                const left = rect.right + 40;
+
+                popupPreview.style.top = `${top}px`;
+                popupPreview.style.left = `${left}px`;
+                popupPreview.style.opacity = '1';
+            }
+        }
+
+        function hideFloatingPreview() {
+            hideTimeout = setTimeout(() => {
+                popupPreview.style.opacity = '0';
+            }, 50);
+        }
+
+        const translations = {
+            en: {
+                flag: "EN",
+                "hero.system": "/// System.Init_User(Willian)",
+                "hero.bio": "Computer Science Student (UNIP). Transforming theoretical knowledge into practical results in Python, SQL, and Web Technologies.",
+                "hero.cta": "View Projects",
+                "hero.cv": "Download CV",
+                "hero.years": "Years in Tech",
+                "hero.repos": "Major Projects",
+                "about.title": "Core Directive",
+                "about.p1": "Professional in early career seeking an Internship or Junior Developer role (Fullstack, Backend, AI). I aim to apply skills in Python, SQL, and Web Tech to solve complex challenges.",
+                "about.p2": "Currently studying <strong class=\"text-white\">Computer Science at UNIP</strong>. I value agile methodologies (Scrum) and clean code. Recognized for quick learning and fluency in English.",
+                "stack.title": "/// Technical_Arsenal",
+                "stack.web": "WEB & BACKEND",
+                "stack.ai": "DATA & AI",
+                "stack.systems": "TOOLS & METHODS",
+                "stack.soft": "SOFT SKILLS",
+                "stack.infra": "INFRASTRUCTURE",
+                "stack.front": "FRONTEND & JS",
+                "stack.work": "WORK ETHIC",
+                "stack.core": "CORE CONCEPTS",
+                "stack.nlp": "Deep Learning & NLP",
+                "stack.modeling": "Data Modeling",
+                "stack.agile": "Scrum & Agile",
+                "stack.office": "Microsoft Office",
+                "stack.comm": "Communication",
+                "stack.conflict": "Conflict Resolution",
+                "stack.english": "English (Fluent)",
+                "stack.network": "Network Architecture",
+                "stack.hardware": "PC Hardware",
+                "stack.responsive": "Responsive Design",
+                "stack.time": "Time Management",
+                "stack.proactive": "Proactivity",
+                "stack.auto": "Autodidact",
+                "stack.numerical": "Numerical Methods",
+                "stack.algo": "Algorithms",
+                "projects.title": "/// Selected_Works",
+                "projects.p1": "SORTING ALGORITHMS",
+                "projects.p2": "WASTE MANAGEMENT",
+                "projects.p3": "CARBON CALCULATOR",
+                "projects.p4": "FACIAL RECOGNITION",
+                "footer.loc": "Loc: Francisco Morato, SP",
+                "footer.talk": "Let's Talk.",
+                "menu.home": "HOME",
+                "menu.about": "ABOUT",
+                "menu.stack": "ARSENAL",
+                "menu.projects": "PROJECTS",
+                "menu.cv": "DOWNLOAD CV",
+                "menu.contact": "ESTABLISH CONNECTION"
+            },
+            pt: {
+                flag: "PT",
+                "hero.system": "/// Sistema.Init_Usuario(Willian)",
+                "hero.bio": "Estudante de Ciência da Computação (UNIP). Transformando conhecimento teórico em resultados práticos em Python, SQL e Web.",
+                "hero.cta": "Ver Projetos",
+                "hero.cv": "Baixar CV",
+                "hero.years": "Anos na Área",
+                "hero.repos": "Projetos Principais",
+                "about.title": "Diretriz Principal",
+                "about.p1": "Profissional em início de carreira buscando Estágio ou vaga de Desenvolvedor Júnior (Fullstack, Backend, IA). Busco aplicar habilidades em Python, SQL e Web para resolver desafios.",
+                "about.p2": "Cursando <strong class=\"text-white\">Ciência da Computação na UNIP</strong>. Valorizo metodologias ágeis (Scrum) e código limpo. Reconhecido pelo aprendizado rápido e fluência em inglês.",
+                "stack.title": "/// Arsenal_Técnico",
+                "stack.web": "WEB & BACKEND",
+                "stack.ai": "DADOS & IA",
+                "stack.systems": "FERRAMENTAS",
+                "stack.soft": "SOFT SKILLS",
+                "stack.infra": "INFRAESTRUTURA",
+                "stack.front": "FRONTEND & JS",
+                "stack.work": "ÉTICA DE TRABALHO",
+                "stack.core": "CONCEITOS CHAVE",
+                "stack.nlp": "Deep Learning & NLP",
+                "stack.modeling": "Modelagem de Dados",
+                "stack.agile": "Scrum & Ágil",
+                "stack.office": "Pacote Office",
+                "stack.comm": "Comunicação Eficaz",
+                "stack.conflict": "Resolução de Conflitos",
+                "stack.english": "Inglês (Fluente)",
+                "stack.network": "Arquitetura de Redes",
+                "stack.hardware": "Hardware PC",
+                "stack.responsive": "Design Responsivo",
+                "stack.time": "Gestão de Tempo",
+                "stack.proactive": "Proatividade",
+                "stack.auto": "Autodidata",
+                "stack.numerical": "Métodos Numéricos",
+                "stack.algo": "Algoritmos",
+                "projects.title": "/// Trabalhos_Selecionados",
+                "projects.p1": "ALGORITMOS DE ORDENAÇÃO",
+                "projects.p2": "GESTÃO DE RESÍDUOS",
+                "projects.p3": "CALCULADORA CARBONO",
+                "projects.p4": "RECONHECIMENTO FACIAL",
+                "footer.loc": "Loc: Francisco Morato, SP",
+                "footer.talk": "Vamos Conversar.",
+                "menu.home": "INÍCIO",
+                "menu.about": "SOBRE",
+                "menu.stack": "ARSENAL",
+                "menu.projects": "PROJETOS",
+                "menu.cv": "BAIXAR CV",
+                "menu.contact": "ESTABELECER CONEXÃO"
+            }
+        };
+
+        let currentLang = 'en';
+        const langToggleBtn = document.getElementById('lang-toggle');
+        const heroTitle = document.getElementById('hero-title');
+
+        langToggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'pt' : 'en';
+            const t = translations[currentLang];
+            
+            langToggleBtn.innerText = t.flag;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.innerHTML = t[key];
+            });
+
+            if (currentLang === 'pt') {
+                heroTitle.setAttribute('data-text', 'DESENVOLVEDOR DE SOFTWARE');
+                heroTitle.innerHTML = `DESENVOLVEDOR<br><span class="text-stroke text-transparent bg-clip-text bg-white">DE SOFTWARE</span>`;
+            } else {
+                heroTitle.setAttribute('data-text', 'SOFTWARE DEVELOPER');
+                heroTitle.innerHTML = `SOFTWARE<br><span class="text-stroke text-transparent bg-clip-text bg-white">DEVELOPER</span>`;
+            }
+        });
+    </script>
+</body>
+</html>
